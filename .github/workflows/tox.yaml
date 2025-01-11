@@ -21,4 +21,4 @@ jobs:
         run: pip install -r requirements_test.txt
 
       - name: "Black codestyle check"
-        run: black --check --diff
+        run: black --check --diff .
