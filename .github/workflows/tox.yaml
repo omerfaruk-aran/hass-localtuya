@@ -21,6 +21,9 @@ jobs:
         run: |
           python -m venv venv
           . venv/bin/activate
+          which python
+          echo "Where python: $pwd"
+          pwd
           pip install -r requirements_test.txt
 
       - name: dependencies
