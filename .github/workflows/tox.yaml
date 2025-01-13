@@ -20,14 +20,12 @@ jobs:
       - name: "Install dependencies"
         run: |
           python -m venv venv
-          . venv/bin/activate
-          echo "Where python: $pwd"
-          pwd
-          pwd
           which python
           which python
-          ls
-          ls
+          source venv/bin/activate
+          echo "After: $pwd"
+          which python
+          which python
           pip install -r requirements_test.txt
 
       - name: "Cache dependencies"
@@ -55,13 +53,10 @@ jobs:
 
       - name: "Black codestyle check"
         run: |
-          . venv/bin/activate
-          which python
-          echo "Where python: $pwd"
-          pwd
-          pwd
           which python
           which python
-          ls
-          ls
+          source venv/bin/activate
+          echo "After: $pwd"
+          which python
+          which python
           black --check --diff .
