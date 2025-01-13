@@ -5,8 +5,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    name: CI
+  base:
+    name: Prepare dependences
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout"
@@ -20,5 +20,9 @@ jobs:
       - name: "Install dependencies"
         run: pip install -r requirements_test.txt
 
+  black:
+    name: Black codestyle
+    runs-on: ubuntu-latest
+    steps:
       - name: "Black codestyle check"
         run: black --check --diff .
