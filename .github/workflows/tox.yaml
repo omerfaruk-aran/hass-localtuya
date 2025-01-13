@@ -26,7 +26,7 @@ jobs:
     needs: base  # This job depends on 'install-deps'
     strategy:
       matrix:
-        os: ubuntu-latest  # Run tests on multiple platforms
+        os: [ubuntu-latest]  # Run tests on multiple platforms
     steps:
       - name: "Black codestyle check"
         run: black --check --diff .
