@@ -19,6 +19,7 @@ jobs:
 
       - name: "Install dependencies"
         run: |
+          python --version
           python -m venv venv
           which python
           which python
@@ -53,6 +54,7 @@ jobs:
 
       - name: "Black codestyle check"
         run: |
+          python --version
           which python
           which python
           source venv/bin/activate
