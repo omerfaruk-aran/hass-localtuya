@@ -54,11 +54,7 @@ jobs:
 
       - name: "Black codestyle check"
         run: |
-          python --version
-          which python
-          which python
           source venv/bin/activate
-          echo "After: $pwd"
-          which python
-          which python
+          ls
+          ls
           black --check --diff .
