@@ -22,9 +22,11 @@ jobs:
 
   black:
     name: Black codestyle
-    runs-on: ubuntu-latest
-    needs:
-      - base
+    runs-on: ${{ matrix.os }}
+    needs: base  # This job depends on 'install-deps'
+    strategy:
+      matrix:
+        os: ubuntu-latest  # Run tests on multiple platforms
     steps:
       - name: "Black codestyle check"
         run: black --check --diff .
