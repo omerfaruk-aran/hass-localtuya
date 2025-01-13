@@ -26,6 +26,8 @@ jobs:
           pwd
           which python
           which python
+          ls
+          ls
           pip install -r requirements_test.txt
 
       - name: "Cache dependencies"
@@ -60,4 +62,6 @@ jobs:
           pwd
           which python
           which python
+          ls
+          ls
           black --check --diff .
