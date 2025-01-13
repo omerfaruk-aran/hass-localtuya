@@ -23,10 +23,12 @@ jobs:
           . venv/bin/activate
           which python
           echo "Where python: $pwd"
-          pwd
+          which python
+          which python
+          which python
           pip install -r requirements_test.txt
 
-      - name: dependencies
+      - name: "Cache dependencies"
         uses: actions/cache@v4.2.0
         with:
           path: venv
