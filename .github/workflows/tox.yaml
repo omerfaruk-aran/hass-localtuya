@@ -18,7 +18,7 @@ jobs:
           python-version: "3.13"
 
       - name: "Install dependencies"
-        run: 
+        run: |
           python -m venv venv
           source venv/bin/activate
           pip install -r requirements_test.txt
@@ -43,6 +43,6 @@ jobs:
           name: dependencies
 
       - name: "Black codestyle check"
-        run: 
+        run: |
           source venv/bin/activate
           black --check --diff .
