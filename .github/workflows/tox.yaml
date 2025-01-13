@@ -54,4 +54,9 @@ jobs:
       - name: "Black codestyle check"
         run: |
           . venv/bin/activate
+          which python
+          echo "Where python: $pwd"
+          which python
+          which python
+          which python
           black --check --diff .
