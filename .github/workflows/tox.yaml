@@ -19,23 +19,17 @@ jobs:
 
       - name: "Install dependencies"
         run: |
-          python --version
           python -m venv venv
-          which python
-          which python
           source venv/bin/activate
-          echo "After: $pwd"
-          which python
-          which python
           pip install -r requirements_test.txt
 
-      # - name: "Cache dependencies"
-      #   uses: actions/cache@v4.2.0
-      #   with:
-      #     path: venv
-      #     key: ${{ runner.os }}-pip-dependencies-${{ hashFiles('requirements.txt') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-pip-dependencies-
+      - name: "Cache dependencies"
+        uses: actions/cache@v4.2.0
+        with:
+          path: venv
+          key: ${{ runner.os }}-pip-dependencies-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-dependencies-
 
   black:
     name: Black codestyle
@@ -45,16 +39,19 @@ jobs:
       - name: "Checkout"
         uses: actions/checkout@v4
 
-      # - name: Restore Python virtual environment
-      #   uses: actions/cache/restore@v4.2.0
-      #   with:
-      #     path: venv
-      #     fail-on-cache-miss: true
-      #     key: ${{ runner.os }}-pip-dependencies-${{ hashFiles('requirements.txt') }}
+      - name: "Setup Python"
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Restore Python virtual environment
+        uses: actions/cache/restore@v4.2.0
+        with:
+          path: venv
+          fail-on-cache-miss: true
+          key: ${{ runner.os }}-pip-dependencies-${{ hashFiles('requirements.txt') }}
 
       - name: "Black codestyle check"
         run: |
           source venv/bin/activate
-          ls
-          ls
           black --check --diff .
