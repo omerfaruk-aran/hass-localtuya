@@ -32,8 +32,6 @@ jobs:
         with:
           path: venv
           key: ${{ runner.os }}-pip-dependencies-${{ hashFiles('requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-dependencies-
 
   black:
     name: Black codestyle
