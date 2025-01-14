@@ -84,4 +84,4 @@ jobs:
       - name: "Black codestyle check"
         run: |
           source venv/bin/activate
-          codespell --skip "*.pyc,*.pyi,*~,*.json" -L "hass"
+          codespell --skip "*.pyc,*.pyi,*~,*.json,venv*" -L "hass"
