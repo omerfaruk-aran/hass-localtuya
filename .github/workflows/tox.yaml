@@ -70,4 +70,7 @@ jobs:
 
       - name: "Black codestyle check"
         run: |
-          codespell --skip "*.pyc,*.pyi,*~,*.json,venv*" -L "hass"
+          ls ${{needs.base.outputs.PY_PATH}}
+          ls ${{needs.base.outputs.PY_PATH}}
+          ls ${{needs.base.outputs.PY_PATH}}
+          ${{needs.base.outputs.PY_PATH}}/codespell --skip "*.pyc,*.pyi,*~,*.json,venv*" -L "hass"
