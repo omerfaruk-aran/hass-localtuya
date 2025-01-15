@@ -24,10 +24,12 @@ jobs:
         run: |
           python -m venv venv
           source venv/bin/activate
-          ls /opt/hostedtoolcache
-          ls /opt/hostedtoolcache
-          ls /opt/hostedtoolcache
-          ls /opt/hostedtoolcache
+          ls /opt/hostedtoolcache/Python
+          ls /opt/hostedtoolcache/Python
+          ls /opt/hostedtoolcache/Python
+          ls /opt/hostedtoolcache/Python
+          ls /opt/hostedtoolcache/Python
+          ls /opt/hostedtoolcache/Python
           pip install -r requirements_test.txt
 
       - name: "Cache dependencies"
@@ -84,4 +86,8 @@ jobs:
       - name: "Black codestyle check"
         run: |
           source venv/bin/activate
+          ls /opt/hostedtoolcache
+          ls /opt/hostedtoolcache
+          ls /opt/hostedtoolcache
+          ls /opt/hostedtoolcache
           codespell --skip "*.pyc,*.pyi,*~,*.json,venv*" -L "hass"
