@@ -42,6 +42,8 @@ jobs:
     steps:
       - name: "Checkout"
         uses: actions/checkout@v4
+
+      - name: "Debugging"
         run:
           echo "--------------------------------"
           echo ${{env.pythonLocation}}
