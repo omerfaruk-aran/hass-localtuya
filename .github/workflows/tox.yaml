@@ -22,20 +22,14 @@ jobs:
 
       - name: "Install dependencies"
         run: |
-          python -m venv venv
-          source venv/bin/activate
-          ls /opt/hostedtoolcache/Python
-          ls /opt/hostedtoolcache/Python
-          ls /opt/hostedtoolcache/Python
-          ls /opt/hostedtoolcache/Python
-          ls /opt/hostedtoolcache/Python
-          ls /opt/hostedtoolcache/Python
+          # python -m venv ${{env.pythonLocation}}venv
+          # source ${{env.pythonLocation}}venv
           pip install -r requirements_test.txt
 
       - name: "Cache dependencies"
         uses: actions/cache@v4.2.0
         with:
-          path: venv
+          path: ${{env.pythonLocation}}
           key: ${{ runner.os }}-pip-dependencies-${{ hashFiles('requirements.txt') }}
 
   black:
@@ -79,15 +73,14 @@ jobs:
       - name: Restore Python virtual environment
         uses: actions/cache/restore@v4.2.0
         with:
-          path: venv
+          path: ${{env.pythonLocation}}
           fail-on-cache-miss: true
           key: ${{ runner.os }}-pip-dependencies-${{ hashFiles('requirements.txt') }}
 
       - name: "Black codestyle check"
         run: |
-          source venv/bin/activate
-          ls /opt/hostedtoolcache
-          ls /opt/hostedtoolcache
-          ls /opt/hostedtoolcache
-          ls /opt/hostedtoolcache
+          # source venv/bin/activate
+          ls ${{env.pythonLocation}}
+          ls ${{env.pythonLocation}}
+          ls ${{env.pythonLocation}}
           codespell --skip "*.pyc,*.pyi,*~,*.json,venv*" -L "hass"
