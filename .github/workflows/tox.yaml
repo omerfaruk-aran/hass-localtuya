@@ -26,12 +26,13 @@ jobs:
         id: install_depends
         run: |
           echo "::set-output name=PY_PATH::${{env.pythonLocation}}"
+          echo "PY_PATH=${{pythonLocation}}" >> $GITHUB_OUTPUT
           pip install -r requirements_test.txt
 
       - name: "Cache dependencies"
         uses: actions/cache@v4.2.0
         with:
-          path: ${{env.PY_PATH}}
+          path: ${{env.pythonLocation}}
           key: ${{ runner.os }}-pip-dependencies-${{ hashFiles('requirements.txt') }}
 
   black:
