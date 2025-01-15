@@ -42,16 +42,21 @@ jobs:
       - name: "Checkout"
         uses: actions/checkout@v4
 
-      - name: Restore Python virtual environment
-        uses: actions/cache/restore@v4.2.0
+      - name: "Setup Python"
+        uses: actions/setup-python@v5
         with:
-          path: ${{needs.base.outputs.PY_PATH}}
-          fail-on-cache-miss: true
-          key: ${{ runner.os }}-pip-dependencies-${{ hashFiles('requirements.txt') }}
+          python-version: "3.13"
+
+      # - name: Restore Python virtual environment
+      #   uses: actions/cache/restore@v4.2.0
+      #   with:
+      #     path: ${{needs.base.outputs.PY_PATH}}
+      #     fail-on-cache-miss: true
+      #     key: ${{ runner.os }}-pip-dependencies-${{ hashFiles('requirements.txt') }}
 
       - name: "Black codestyle check"
         run: |
-          ${{needs.base.outputs.PY_PATH}}/python black --check --diff .
+          black --check --diff .
 
   codespell:
     name: "Codespell check"
@@ -61,16 +66,18 @@ jobs:
       - name: "Checkout"
         uses: actions/checkout@v4
 
-      - name: Restore Python virtual environment
-        uses: actions/cache/restore@v4.2.0
+      - name: "Setup Python"
+        uses: actions/setup-python@v5
         with:
-          path: ${{needs.base.outputs.PY_PATH}}
-          fail-on-cache-miss: true
-          key: ${{ runner.os }}-pip-dependencies-${{ hashFiles('requirements.txt') }}
+          python-version: "3.13"
+
+      # - name: Restore Python virtual environment
+      #   uses: actions/cache/restore@v4.2.0
+      #   with:
+      #     path: ${{needs.base.outputs.PY_PATH}}
+      #     fail-on-cache-miss: true
+      #     key: ${{ runner.os }}-pip-dependencies-${{ hashFiles('requirements.txt') }}
 
       - name: "Black codestyle check"
         run: |
-          ls ${{needs.base.outputs.PY_PATH}}
-          ls ${{needs.base.outputs.PY_PATH}}/lib
-          ls ${{needs.base.outputs.PY_PATH}}/lib/site-packages
-          ${{needs.base.outputs.PY_PATH}}/python codespell --skip "*.pyc,*.pyi,*~,*.json,venv*" -L "hass"
+          codespell --skip "*.pyc,*.pyi,*~,*.json,venv*" -L "hass"
