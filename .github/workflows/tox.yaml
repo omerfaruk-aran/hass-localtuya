@@ -25,7 +25,6 @@ jobs:
       - name: "Install dependencies"
         id: install_depends
         run: |
-          echo "::set-output name=PY_PATH::${{env.pythonLocation}}"
           echo "PY_PATH=${{env.pythonLocation}}" >> $GITHUB_OUTPUT
           pip install -r requirements_test.txt
 
@@ -43,22 +42,15 @@ jobs:
       - name: "Checkout"
         uses: actions/checkout@v4
 
-      - name: "Debugging"
-        run:
-          echo "--------------------------------"
-          echo ${{needs.base.outputs.PY_PATH}}
-          echo ${{needs.base.outputs.PY_PATH}}
-
       - name: Restore Python virtual environment
         uses: actions/cache/restore@v4.2.0
         with:
-          path: ${{env.pythonLocation}}
+          path: ${{needs.base.outputs.PY_PATH}}
           fail-on-cache-miss: true
           key: ${{ runner.os }}-pip-dependencies-${{ hashFiles('requirements.txt') }}
 
       - name: "Black codestyle check"
         run: |
-          # source venv/bin/activate
           black --check --diff .
 
   codespell:
@@ -72,14 +64,10 @@ jobs:
       - name: Restore Python virtual environment
         uses: actions/cache/restore@v4.2.0
         with:
-          path: ${{env.pythonLocation}}
+          path: ${{needs.base.outputs.PY_PATH}}
           fail-on-cache-miss: true
           key: ${{ runner.os }}-pip-dependencies-${{ hashFiles('requirements.txt') }}
 
       - name: "Black codestyle check"
         run: |
-          # source venv/bin/activate
-          ls ${{env.pythonLocation}}
-          ls ${{env.pythonLocation}}
-          ls ${{env.pythonLocation}}
           codespell --skip "*.pyc,*.pyi,*~,*.json,venv*" -L "hass"
