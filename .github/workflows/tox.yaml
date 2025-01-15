@@ -59,6 +59,11 @@ jobs:
       - name: "Black codestyle check"
         run: |
           source venv/bin/activate
+          ls /opt
+          ls /opt
+          ls /opt
+          ls /opt
+          ls /opt
           black --check --diff .
 
   codespell:
@@ -84,7 +89,6 @@ jobs:
       - name: "Black codestyle check"
         run: |
           source venv/bin/activate
-          ${{env.pythonLocation}}
           ${{env.pythonLocation}}
           ${{env.pythonLocation}}
           ${{env.pythonLocation}}
