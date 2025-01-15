@@ -24,6 +24,9 @@ jobs:
         run: |
           # python -m venv ${{env.pythonLocation}}venv
           # source ${{env.pythonLocation}}venv
+          ls "-------------------------------------"
+          ${{env.pythonLocation}}
+          ls "-------------------------------------"
           pip install -r requirements_test.txt
 
       - name: "Cache dependencies"
