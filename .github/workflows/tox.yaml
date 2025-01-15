@@ -45,7 +45,9 @@ jobs:
           echo ${{env.PY_PATH}}
           echo ${{env.PY_PATH}}
           echo ${{env.PY_PATH}}
-          echo ${{env.PY_PATH}}
+          echo $PY_PATH
+          echo $PY_PATH
+          echo $PY_PATH
 
       - name: Restore Python virtual environment
         uses: actions/cache/restore@v4.2.0
