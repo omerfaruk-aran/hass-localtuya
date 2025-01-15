@@ -22,7 +22,7 @@ jobs:
 
       - name: "Install dependencies"
         run: |
-          echo "PY_PATH=${{pythonLocation}}" >> $GITHUB_ENV
+          echo "PY_PATH=${{env.pythonLocation}}" >> $GITHUB_ENV
           pip install -r requirements_test.txt
 
       - name: "Cache dependencies"
