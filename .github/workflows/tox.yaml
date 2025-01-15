@@ -43,7 +43,7 @@ jobs:
       - name: Restore Python virtual environment
         uses: actions/cache/restore@v4.2.0
         with:
-          path: venv
+          path: ${{env.pythonLocation}}
           fail-on-cache-miss: true
           key: ${{ runner.os }}-pip-dependencies-${{ hashFiles('requirements.txt') }}
 
