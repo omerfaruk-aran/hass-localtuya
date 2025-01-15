@@ -22,17 +22,13 @@ jobs:
 
       - name: "Install dependencies"
         run: |
-          # python -m venv ${{env.pythonLocation}}venv
-          # source ${{env.pythonLocation}}venv
-          echo "-------------------------------------"
-          ls ${{env.pythonLocation}}
-          echo "-------------------------------------"
+          echo "PY_PATH=${{pythonLocation}}" >> $GITHUB_ENV
           pip install -r requirements_test.txt
 
       - name: "Cache dependencies"
         uses: actions/cache@v4.2.0
         with:
-          path: ${{env.pythonLocation}}
+          path: ${{env.PY_PATH}}
           key: ${{ runner.os }}-pip-dependencies-${{ hashFiles('requirements.txt') }}
 
   black:
@@ -46,10 +42,10 @@ jobs:
       - name: "Debugging"
         run:
           echo "--------------------------------"
-          echo ${{env.pythonLocation}}
-          echo ${{env.pythonLocation}}
-          echo ${{env.pythonLocation}}
-          echo ${{env.pythonLocation}}
+          echo ${{env.PY_PATH}}
+          echo ${{env.PY_PATH}}
+          echo ${{env.PY_PATH}}
+          echo ${{env.PY_PATH}}
 
       - name: Restore Python virtual environment
         uses: actions/cache/restore@v4.2.0
