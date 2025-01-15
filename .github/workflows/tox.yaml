@@ -25,7 +25,7 @@ jobs:
           # python -m venv ${{env.pythonLocation}}venv
           # source ${{env.pythonLocation}}venv
           echo "-------------------------------------"
-          ${{env.pythonLocation}}
+          ls ${{env.pythonLocation}}
           echo "-------------------------------------"
           pip install -r requirements_test.txt
 
