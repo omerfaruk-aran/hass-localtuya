@@ -68,4 +68,4 @@ jobs:
           key: ${{ runner.os }}-pip-dependencies-${{ hashFiles('requirements.txt') }}
 
       - name: "Black codestyle check"
-        run: ${{needs.base.outputs.PY_PATH}}/bin/codespell --skip "*.pyc,*.pyi,*~,*.json,contiuation" -L "hass"
+        run: ${{needs.base.outputs.PY_PATH}}/bin/codespell --count --skip "*.pyc,*.pyi,*~,*.json" -L "hass" 
