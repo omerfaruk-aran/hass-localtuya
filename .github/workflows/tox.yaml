@@ -20,17 +20,13 @@ jobs:
       - name: "Setup Python"
         uses: actions/setup-python@v5
         with:
-          python-version: "3.13"
+          python-version: ${{env.PY_VERSION}}
 
       - name: "Install dependencies"
         id: install_depends
         run: |
           echo "PY_PATH=${{env.pythonLocation}}" >> $GITHUB_OUTPUT
           pip install -r requirements_test.txt
-          echo "-------------------------------------------------"
-          which codespell
-          which black
-          echo "-------------------------------------------------"
 
       - name: "Cache dependencies"
         uses: actions/cache@v4.2.0
@@ -46,7 +42,7 @@ jobs:
       - name: "Checkout"
         uses: actions/checkout@v4
 
-      - name: Restore Python virtual environment
+      - name: Restore Python
         uses: actions/cache/restore@v4.2.0
         with:
           path: ${{needs.base.outputs.PY_PATH}}
@@ -54,8 +50,7 @@ jobs:
           key: ${{ runner.os }}-pip-dependencies-${{ hashFiles('requirements.txt') }}
 
       - name: "Black codestyle check"
-        run: |
-          ${{needs.base.outputs.PY_PATH}}/bin/black --check --diff .
+        run: ${{needs.base.outputs.PY_PATH}}/bin/black --check --diff .
 
   codespell:
     name: "Codespell check"
@@ -65,7 +60,7 @@ jobs:
       - name: "Checkout"
         uses: actions/checkout@v4
 
-      - name: Restore Python virtual environment
+      - name: Restore Python
         uses: actions/cache/restore@v4.2.0
         with:
           path: ${{needs.base.outputs.PY_PATH}}
@@ -73,5 +68,4 @@ jobs:
           key: ${{ runner.os }}-pip-dependencies-${{ hashFiles('requirements.txt') }}
 
       - name: "Black codestyle check"
-        run: |
-          ${{needs.base.outputs.PY_PATH}}/bin/codespell --skip "*.pyc,*.pyi,*~,*.json,venv*" -L "hass"
+        run: ${{needs.base.outputs.PY_PATH}}/bin/codespell --skip "*.pyc,*.pyi,*~,*.json" -L "hass"
